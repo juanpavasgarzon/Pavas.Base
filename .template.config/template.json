@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "Juan Pavas",
+  "classifications": [
+    "Clean architecture",
+    "Base",
+    "Docker",
+    "REST API"
+  ],
+  "identity": "Pavas.Base",
+  "name": "Pavas Base C#",
+  "shortName": "pavas.base",
+  "sourceName": "Pavas.Base",
+  "defaultName": "MyService",
+  "description": "A powerful template for creating a service using Clean Architecture principles, with support for Docker, REST APIs, and modularity.",
+  "version": "1.0.0",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "port": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": "5000",
+      "replaces": "PORT_PLACEHOLDER",
+      "description": "Port number for the Docker container and service."
+    },
+    "jwtSecret": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "super-duper-secret-value-that-should-be-in-user-secrets",
+      "replaces": "JWT_SECRET_PLACEHOLDER",
+      "description": "Secret key used for signing JWT tokens."
+    },
+    "jwtIssuer": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "pavas",
+      "replaces": "JWT_ISSUER_PLACEHOLDER",
+      "description": "Issuer of the JWT token."
+    },
+    "jwtAudience": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "pavas",
+      "replaces": "JWT_AUDIENCE_PLACEHOLDER",
+      "description": "Audience for the JWT token."
+    },
+    "jwtExpirationInMinutes": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "60",
+      "replaces": "JWT_EXPIRATION_IN_MINUTES_PLACEHOLDER",
+      "description": "JWT token expiration time in minutes."
+    },
+    "rabbitMqHost": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "localhost",
+      "replaces": "RABBITMQ_HOST_PLACEHOLDER",
+      "description": "Host address for RabbitMQ."
+    },
+    "rabbitMqUsername": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "guest",
+      "replaces": "RABBITMQ_USERNAME_PLACEHOLDER",
+      "description": "Username for RabbitMQ authentication."
+    },
+    "rabbitMqPassword": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "guest",
+      "replaces": "RABBITMQ_PASSWORD_PLACEHOLDER",
+      "description": "Password for RabbitMQ authentication."
+    },
+    "rabbitMqVirtualHost": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "/",
+      "replaces": "RABBITMQ_VIRTUAL_HOST_PLACEHOLDER",
+      "description": "Virtual host for RabbitMQ."
+    },
+    "outboxIntervalInSeconds": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": "10",
+      "replaces": "OUTBOX_INTERVAL_IN_SECONDS_PLACEHOLDER",
+      "description": "Interval (in seconds) for processing the outbox."
+    },
+    "databaseHost": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "localhost",
+      "replaces": "DATABASE_HOST_PLACEHOLDER",
+      "description": "Host address for the database."
+    },
+    "databasePort": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "5432",
+      "replaces": "DATABASE_PORT_PLACEHOLDER",
+      "description": "Port number for the database connection."
+    },
+    "databaseUsername": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "postgres",
+      "replaces": "DATABASE_USERNAME_PLACEHOLDER",
+      "description": "Username for the database connection."
+    },
+    "databasePassword": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "postgres",
+      "replaces": "DATABASE_PASSWORD_PLACEHOLDER",
+      "description": "Password for the database connection."
+    },
+    "databaseName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "pavas",
+      "replaces": "DATABASE_NAME_PLACEHOLDER",
+      "description": "Name of the database to connect to."
+    },
+    "seqHost": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "http://localhost",
+      "replaces": "SEQ_HOST_PLACEHOLDER",
+      "description": "Host address for the Seq logging server."
+    },
+    "seqPort": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "5341",
+      "replaces": "SEQ_PORT_PLACEHOLDER",
+      "description": "Port number for the Seq logging server."
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "true",
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**",
+            "**/*.user",
+            "**/*.lock.json"
+          ]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Restore NuGet packages required by this project.",
+      "actionId": "9C39F1B8-46D8-4864-BC78-5FFCE8F456A2",
+      "args": {
+        "files": "Pavas.Base.sln"
+      },
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore' to restore NuGet packages."
+        }
+      ]
+    },
+    {
+      "description": "Initialize a Git repository for this project.",
+      "actionId": "E3E87960-FAC3-464D-97C0-970A1F1E68DE",
+      "args": {
+        "arguments": "init"
+      },
+      "manualInstructions": [
+        {
+          "text": "Run 'git init' to initialize a Git repository."
+        }
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "reserved": "yes",
+  "primaryOutputs": [
+    {
+      "path": "Pavas.Base.sln"
+    }
+  ],
+  "defaultOutputDirectory": "./output",
+  "groupIdentity": "Pavas",
+  "licenses": [
+    {
+      "url": "https://opensource.org/licenses/MIT",
+      "text": "MIT License"
+    }
+  ],
+  "defaultAuthor": "Juan Pavas",
+  "defaultCompany": "Pavas",
+  "defaultLanguage": "C#",
+  "defaultFramework": "net9.0"
+}

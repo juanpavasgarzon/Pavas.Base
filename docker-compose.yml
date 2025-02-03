@@ -1,0 +1,29 @@
+services:
+  web-api:
+    image: ${DOCKER_REGISTRY-}webapi
+    container_name: ${COMPOSE_PROJECT_NAME-}webapi
+    build:
+      context: .
+      dockerfile: src/Web.Api/Dockerfile
+    ports:
+      - "PORT_PLACEHOLDER:8080"
+        
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=DATABASE_NAME_PLACEHOLDER
+      - POSTGRES_USER=DATABASE_USERNAME_PLACEHOLDER
+      - POSTGRES_PASSWORD=DATABASE_PASSWORD_PLACEHOLDER
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data
+    ports:
+      - "DATABASE_PORT_PLACEHOLDER:5432"
+
+  seq:
+    image: datalust/seq:2024.3
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "SEQ_PORT_PLACEHOLDER:80"
