@@ -30,7 +30,7 @@ internal sealed class OutboxMessageInterceptor : SaveChangesInterceptor
             })
             .Select(@event => new OutboxMessage
             {
-                Id = OutboxMessageId.New(),
+                Id = OutboxMessageId.Create(),
                 OccurredOnUtc = DateTime.UtcNow,
                 Type = @event.GetType().Name,
                 Content = JsonConvert.SerializeObject(@event, new JsonSerializerSettings

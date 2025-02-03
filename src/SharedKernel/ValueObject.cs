@@ -45,7 +45,7 @@ public abstract class ValueObject
     {
         return string.Join(", ", GetEqualityComponents());
     }
-    
+
     public static bool operator ==(ValueObject one, ValueObject two)
     {
         return EqualOperator(one, two);

@@ -11,9 +11,10 @@ internal sealed class OutboxMessageConfiguration : IEntityTypeConfiguration<Outb
         builder.HasKey(o => o.Id);
 
         builder.Property(p => p.Id)
+            .ValueGeneratedNever()
             .HasConversion(
                 id => id.Value,
-                value => new OutboxMessageId(value));
+                value => OutboxMessageId.New(value));
 
         builder.Property(o => o.Content)
             .HasColumnType("jsonb");
