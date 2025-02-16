@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Data;
-using Domain.Outbox;
+using Infrastructure.Outbox;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Database;

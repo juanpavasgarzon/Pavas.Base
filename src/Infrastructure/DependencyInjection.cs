@@ -1,10 +1,8 @@
 ﻿using System.Text;
 using Application.Abstractions.Authentication;
 using Application.Abstractions.Data;
-using Application.Abstractions.IntegrationEvents;
 using Infrastructure.Authentication;
 using Infrastructure.Database;
-using Infrastructure.IntegrationEvents;
 using Infrastructure.Interceptors;
 using Infrastructure.Jobs;
 using Infrastructure.Time;
@@ -27,11 +25,9 @@ public static class DependencyInjection
         AddDatabase(services, configuration);
 
         AddServices(services);
-        
-        AddIntegrationEvents(services);
 
         AddJobs(services, configuration);
-        
+
         AddInterceptorsInternal(services);
 
         AddHealths(services, configuration);
@@ -46,11 +42,6 @@ public static class DependencyInjection
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
     }
 
-    private static void AddIntegrationEvents(IServiceCollection services)
-    {
-        services.AddScoped<IEventPublisher>(sp => sp.GetRequiredService<EventPublisher>());
-    }
-    
     private static void AddJobs(IServiceCollection services, IConfiguration configuration)
     {
         services.AddQuartz(configurator =>
@@ -98,9 +89,7 @@ public static class DependencyInjection
 
     private static void AddHealths(IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("Database");
-
-        services.AddHealthChecks().AddNpgSql(connectionString!);
+        services.AddHealthChecks().AddNpgSql(configuration.GetConnectionString("Database")!);
     }
 
     private static void AddAuthenticationInternal(IServiceCollection services, IConfiguration configuration)

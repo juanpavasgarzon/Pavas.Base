@@ -1,6 +1,6 @@
 using SharedKernel;
 
-namespace Domain.Outbox;
+namespace Infrastructure.Outbox;
 
 public class OutboxMessageId : ValueObject
 {

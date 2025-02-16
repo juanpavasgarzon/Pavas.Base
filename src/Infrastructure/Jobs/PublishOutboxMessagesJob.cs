@@ -1,5 +1,5 @@
-using Domain.Outbox;
 using Infrastructure.Database;
+using Infrastructure.Outbox;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
